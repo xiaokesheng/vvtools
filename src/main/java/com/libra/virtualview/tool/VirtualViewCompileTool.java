@@ -78,96 +78,46 @@ public class VirtualViewCompileTool {
         compile(rootDir, RESOURCE_LIST, path);
     }
 
+    /**
+     * @param readDir   template 文件的根目录
+     * @param paths     template 文件集合
+     * @param buildPath 程序入口路径
+     */
     static private void compile(String readDir, List<Template> paths, String buildPath) {
         boolean ret = false;
-        Boolean useNew = false;
-        useNew = true;
-        ViewCompiler compiler = new ViewCompiler(useNew);
-        if (!useNew) {
-            compiler.registerParser(new ScrollerParser.Builder());
-            compiler.registerParser(new TMTipsViewParser.Builder());
-            compiler.registerParser(new TMRecommendTextViewParser.Builder());
-            compiler.registerParser(new TMRecommendBenefitViewParser.Builder());
-            compiler.registerParser(new TMCommodityScenceViewParser.Builder());
-            compiler.registerParser(new TMCommodity3DModelViewParser.Builder());
-            compiler.registerParser(new TMCommodityShowWindowViewParser.Builder());
-            compiler.registerParser(new TM620RecommendBenefitViewParser.Builder());
-            compiler.registerParser(new TMPriceTextViewParser.Builder());
-            compiler.registerParser(new TotalContainerParser.Builder());
-            compiler.registerParser(new TM630RecommendMagicWandViewParser.Builder());
-            compiler.registerParser(new TM630CountDownViewParser.Builder());
-            compiler.registerParser(new TM830TabHeaderViewParser.Builder());
-        }
+        ViewCompiler compiler = new ViewCompiler(true);
 
-
-        if (useNew) {
-            buildPath = buildPath + "build/";
-        } else {
-            buildPath = buildPath + "build1/";
-        }
+        buildPath = buildPath + "build/";
 
         File dirPath = new File(buildPath + "out/");
         File dirDytePath = new File(buildPath + "java/");
         File dirTextPath = new File(buildPath + "txt/");
         File dirSignPath = new File(buildPath + "sign/");
 
-        if (!dirPath.exists()) {
-            dirPath.mkdirs();
-        }
-
-        if (!dirDytePath.exists()) {
-            dirDytePath.mkdirs();
-        }
-
-        if (!dirTextPath.exists()) {
-            dirTextPath.mkdirs();
-        }
-
-        if (!dirSignPath.exists()) {
-            dirSignPath.mkdirs();
-        }
+        dirPath.mkdirs();
+        dirDytePath.mkdirs();
+        dirTextPath.mkdirs();
+        dirSignPath.mkdirs();
 
         File androidDirPath = new File(buildPath + "android/out/");
         File androidDirDytePath = new File(buildPath + "android/java/");
         File androidDirTextPath = new File(buildPath + "android/txt/");
         File androidDirSignPath = new File(buildPath + "android/sign/");
 
-        if (!androidDirPath.exists()) {
-            androidDirPath.mkdirs();
-        }
-
-        if (!androidDirDytePath.exists()) {
-            androidDirDytePath.mkdirs();
-        }
-
-        if (!androidDirTextPath.exists()) {
-            androidDirTextPath.mkdirs();
-        }
-
-        if (!androidDirSignPath.exists()) {
-            androidDirSignPath.mkdirs();
-        }
+        androidDirPath.mkdirs();
+        androidDirDytePath.mkdirs();
+        androidDirTextPath.mkdirs();
+        androidDirSignPath.mkdirs();
 
         File iphoneDirPath = new File(buildPath + "iphone/out/");
         File iphoneDirDytePath = new File(buildPath + "iphone/java/");
         File iphoneDirTextPath = new File(buildPath + "iphone/txt/");
         File iphoneDirSignPath = new File(buildPath + "iphone/sign/");
 
-        if (!iphoneDirPath.exists()) {
-            iphoneDirPath.mkdirs();
-        }
-
-        if (!iphoneDirDytePath.exists()) {
-            iphoneDirDytePath.mkdirs();
-        }
-
-        if (!iphoneDirTextPath.exists()) {
-            iphoneDirTextPath.mkdirs();
-        }
-
-        if (!iphoneDirSignPath.exists()) {
-            iphoneDirSignPath.mkdirs();
-        }
+        iphoneDirPath.mkdirs();
+        iphoneDirDytePath.mkdirs();
+        iphoneDirTextPath.mkdirs();
+        iphoneDirSignPath.mkdirs();
 
         String platform = "";
         for (Template resourceNode : paths) {

@@ -36,59 +36,59 @@ import java.util.Map.Entry;
 
 public class ValueParserCenter {
 
-	Map<Integer, BaseValueParser> parserClassMap;
-	
-	Map<Integer,String> configMap;
-	CompilerConfig config;
-	
-	public ValueParserCenter(CompilerConfig config) {
-		super();
+    Map<Integer, BaseValueParser> parserClassMap;
 
-		this.config = config;
-		this.configMap = config.getPropertyMap();
-	}
-	
-	public boolean initValueParserClass(){
-		parserClassMap = new HashMap<Integer, BaseValueParser>();
-		
-		for(Entry<Integer, String> e : configMap.entrySet()){
-			String clsName = "com.libra.virtualview.compiler.valueparser." + e.getValue() + "ValueParser";
-			try {
-				BaseValueParser valueParser = (BaseValueParser)Class.forName(clsName).newInstance();
-				if("Enum".equals(e.getValue())){
-					EnumValueParser enumValueParser = (EnumValueParser)valueParser;
-					enumValueParser.setEnumMap(config.getEnumMap());
-				}
-				parserClassMap.put(e.getKey(), valueParser);
-			} catch (Exception e1) {
-				e1.printStackTrace();
-				
-				String msg = "valueParser create error:" + e.getValue() + " check class:" + clsName;
-				 System.out.println("error:" + msg);
-				 AlertView.alert(msg);
-				 return false;
-			}
-		}
-		
-		return true;
-	}
-	
-	public boolean supportParser(String nameSpace){
-		BaseValueParser p = parserClassMap.get(nameSpace.hashCode());
-		return p!=null;
-	}
-	
-	public boolean parseAttribute(int nameSpaceKey,int key, AttrItem item,ExprCompiler exprCompiler,ExprCodeStore mExprCodeStore){
-		BaseValueParser p = parserClassMap.get(nameSpaceKey==0?key:nameSpaceKey);
-		if(p!=null){
-			p.setmExprCompiler(exprCompiler);
-			p.setmExprCodeStore(mExprCodeStore);
-			p.setKeyInt(key);
-			
-			return p.parser(item);
-		}
-		
-		return true;
-	}
+    Map<Integer, String> configMap;
+    CompilerConfig config;
+
+    public ValueParserCenter(CompilerConfig config) {
+        super();
+
+        this.config = config;
+        this.configMap = config.getPropertyMap();
+    }
+
+    public boolean initValueParserClass() {
+        parserClassMap = new HashMap<Integer, BaseValueParser>();
+
+        for (Entry<Integer, String> e : configMap.entrySet()) {
+            String clsName = "com.libra.virtualview.compiler.valueparser." + e.getValue() + "ValueParser";
+            try {
+                BaseValueParser valueParser = (BaseValueParser) Class.forName(clsName).newInstance();
+                if ("Enum".equals(e.getValue())) {
+                    EnumValueParser enumValueParser = (EnumValueParser) valueParser;
+                    enumValueParser.setEnumMap(config.getEnumMap());
+                }
+                parserClassMap.put(e.getKey(), valueParser);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+
+                String msg = "valueParser create error:" + e.getValue() + " check class:" + clsName;
+                System.out.println("error:" + msg);
+                AlertView.alert(msg);
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean supportParser(String nameSpace) {
+        BaseValueParser p = parserClassMap.get(nameSpace.hashCode());
+        return p != null;
+    }
+
+    public boolean parseAttribute(int nameSpaceKey, int key, AttrItem item, ExprCompiler exprCompiler, ExprCodeStore mExprCodeStore) {
+        BaseValueParser p = parserClassMap.get(nameSpaceKey == 0 ? key : nameSpaceKey);
+        if (p != null) {
+            p.setmExprCompiler(exprCompiler);
+            p.setmExprCodeStore(mExprCodeStore);
+            p.setKeyInt(key);
+
+            return p.parser(item);
+        }
+
+        return true;
+    }
 
 }

@@ -1,7 +1,8 @@
 package com.libra.virtualview.tool;
 
 /**
- * Created by longerian on 2017/5/20.
+ * 每个模板对应在 properties 文件中的属性
+ * Created by longerian on 2017/5/20
  */
 public class Template {
 

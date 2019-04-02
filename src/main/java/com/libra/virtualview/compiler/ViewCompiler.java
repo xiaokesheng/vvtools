@@ -459,7 +459,7 @@ public class ViewCompiler implements ExprCompiler.Listener {
                                 int count = parser.getAttributeCount();
                                 for (int i = 0; i < count; ++i) {
                                     String strKey = parser.getAttributeName(i);
-                                    
+
                                     int key = 0;
                                     int nameSpaceKey = 0;
                                     String nameSpaceStr = parser.getName() +  "." + strKey;

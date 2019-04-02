@@ -37,6 +37,10 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Properties;
 
+
+/**
+ * 初始化模板列表
+ */
 public class CompilerResourceConfig {
 
 	public List<Template> RESOURCE_LIST;

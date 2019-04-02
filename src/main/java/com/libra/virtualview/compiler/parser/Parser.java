@@ -35,7 +35,7 @@ import com.libra.virtualview.compiler.ExprCodeStore;
 /**
  * Created by gujicheng on 16/10/13.
  */
-public abstract class  Parser {
+public abstract class Parser {
     private final static String TAG = "Parser_TMTEST";
 
     public final static int CONVERT_RESULT_ERROR = -1;
@@ -79,13 +79,12 @@ public abstract class  Parser {
         private int mIntValue;
         public float mFloatValue;
 
-        
-        
-        public int getmIntValue() {
-			return mIntValue;
-		}
 
-		public int mType;
+        public int getmIntValue() {
+            return mIntValue;
+        }
+
+        public int mType;
 
         public AttrItem() {
             reset();
@@ -140,14 +139,14 @@ public abstract class  Parser {
         }
     }
 
-    public boolean supportNameSpace(String nameSpace){
-    	return false;
+    public boolean supportNameSpace(String nameSpace) {
+        return false;
     }
 
-    public  int convertAttribute(int nameSpaeKey,int key, AttrItem value){
-    	return -1;
+    public int convertAttribute(int nameSpaeKey, int key, AttrItem value) {
+        return -1;
     }
-    
+
     public abstract int convertAttribute(int key, AttrItem value);
 
     // only parse integer

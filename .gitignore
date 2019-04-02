@@ -11,3 +11,8 @@ build/
 local.properties
 
 *.log
+
+*.ipr
+*.iws
+
+out/
