@@ -52,7 +52,7 @@ public class ValueParserCenter {
 		parserClassMap = new HashMap<Integer, BaseValueParser>();
 		
 		for(Entry<Integer, String> e : configMap.entrySet()){
-			String clsName = "com.com.libra.virtualview.compiler.valueparser." + e.getValue() + "ValueParser";
+			String clsName = "com.libra.virtualview.compiler.valueparser." + e.getValue() + "ValueParser";
 			try {
 				BaseValueParser valueParser = (BaseValueParser)Class.forName(clsName).newInstance();
 				if("Enum".equals(e.getValue())){
