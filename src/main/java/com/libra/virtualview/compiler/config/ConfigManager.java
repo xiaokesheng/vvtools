@@ -56,6 +56,7 @@ public class ConfigManager {
         Properties prop = new Properties();
         if (sConfigLoader != null) {
             try {
+                // 加载属性配置
                 InputStream inputStream = sConfigLoader.getConfigResource();
                 prop.load(inputStream);
             } catch (IOException e) {

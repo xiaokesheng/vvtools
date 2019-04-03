@@ -30,6 +30,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 /**
+ * 得到 属性映射成 数值 的 config.properties 文件流
  * Created by longerian on 2018/1/22.
  */
 public class LocalConfigLoader implements ConfigManager.ConfigLoader {

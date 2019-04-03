@@ -27,7 +27,6 @@ package com.libra.virtualview.common;
 /**
  * Created by gujicheng on 16/11/8.
  */
-
 public class StringBase {
     final public static String[] SYS_KEYS = {
             "VHLayout", "GridLayout", "FrameLayout", "NText", "VText", "NImage", "VImage", "TMNImage", "List", "Component",

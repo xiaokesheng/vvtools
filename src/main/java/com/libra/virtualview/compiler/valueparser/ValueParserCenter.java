@@ -48,11 +48,14 @@ public class ValueParserCenter {
         this.configMap = config.getPropertyMap();
     }
 
-    public boolean initValueParserClass() {
+    public boolean initValueParserClass(boolean show) {
         parserClassMap = new HashMap<Integer, BaseValueParser>();
 
         for (Entry<Integer, String> e : configMap.entrySet()) {
             String clsName = "com.libra.virtualview.compiler.valueparser." + e.getValue() + "ValueParser";
+            if (show) {
+                System.out.println("configMap ---------->" + e.getValue() + ", " + e.getKey());
+            }
             try {
                 BaseValueParser valueParser = (BaseValueParser) Class.forName(clsName).newInstance();
                 if ("Enum".equals(e.getValue())) {

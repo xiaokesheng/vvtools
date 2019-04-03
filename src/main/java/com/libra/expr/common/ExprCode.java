@@ -27,9 +27,9 @@ package com.libra.expr.common;
 import java.util.List;
 
 /**
+ * 生成的 code
  * Created by gujicheng on 16/11/8.
  */
-
 public class ExprCode {
     private final static String TAG = "ExprCode_TMTEST";
 

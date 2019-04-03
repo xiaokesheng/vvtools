@@ -49,7 +49,7 @@ public class ConfigParser extends Parser {
             parser.setCompilerConfig(config);
 
             ValueParserCenter valueParserCenter = new ValueParserCenter(config);
-            valueParserCenter.initValueParserClass();
+            valueParserCenter.initValueParserClass(false);
             parser.setValueParserCenter(valueParserCenter);
 
             return parser;

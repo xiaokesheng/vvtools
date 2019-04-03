@@ -431,7 +431,8 @@ public class ViewCompiler implements ExprCompiler.Listener {
 
                         case XmlPullParser.START_TAG:
                             mCodeWrite.writeByte(Common.CODE_START_TAG);
-                            Parser viewParser = build(parser.getName());
+                            String layoutName = parser.getName();
+                            Parser viewParser = build(layoutName);
                             if (null != viewParser) {
                                 int id = viewParser.getId();
                                 if (id != 0) {
@@ -446,6 +447,7 @@ public class ViewCompiler implements ExprCompiler.Listener {
                                 if (mBuilderStack.size() > 0) {
                                     parentParser = mBuilderStack.peek();
                                 }
+                                System.out.println("push" + ((ConfigParser) viewParser).getViewName());
                                 mBuilderStack.push(viewParser);
 
                                 intDatas.clear();
@@ -516,7 +518,8 @@ public class ViewCompiler implements ExprCompiler.Listener {
                         case XmlPullParser.END_TAG:
                             mCodeWrite.writeByte(Common.CODE_END_TAG);
 
-                            mBuilderStack.pop();
+                            ConfigParser endParser = (ConfigParser) mBuilderStack.pop();
+                            System.out.println("pop" + endParser.getViewName());
                             break;
 
                         case XmlPullParser.END_DOCUMENT:
@@ -686,6 +689,35 @@ public class ViewCompiler implements ExprCompiler.Listener {
         return ret;
     }
 
+    /**
+     * 以现在这个gridlayout.xml 的 VText.textSize 为例
+     * <code>
+     *     <VText
+     *          text="Title: colCount = 2"
+     *          textSize="12"
+     *          textColor="#333333"
+     *          background="#008899"
+     *          layoutWidth="match_parent"
+     *          layoutHeight="20" />
+     * </code>
+     *
+     * @param name          模板名称 typeName           gridlayout
+     * @param parser        XmlPullParser
+     * @param attrItem      当前布局下的一个 attribute  textSize 属性
+     * @param parentParser  父布局 Parser              VHLayout 对应的 ConfigParser
+     * @param viewParser    当前布局 Parser             VText 对应的 ConfigParser
+     * @param nameSpaceKey  null
+     * @param key           StringStore 里存储的，当前属性对应的 id         textSize 属性对应的 id
+     * @param strKey        属性名称                    textsize
+     * @param value         属性对应的值                  2
+     * @param intDatas
+     * @param intAPDatas
+     * @param floatDatas
+     * @param floatAPDatas
+     * @param strDatas
+     * @param codeDatas
+     * @return
+     */
     private boolean convertAttribute(String name, XmlPullParser parser, 
     		Parser.AttrItem attrItem, Parser parentParser, 
     		Parser viewParser,int nameSpaceKey, int key, String strKey, String value,
