@@ -228,9 +228,10 @@ public class ViewCompiler implements ExprCompiler.Listener {
             }
 
             mCodeStartOffset = (int) mMemByte.length();
-
+            // mCodeStartOffset = 47
             // uiCodeTab item count
             mMemByte.writeInt(0);
+            // 到此为止，一共写了 51 个 byte，分别是 ALIVV 01 00 01 0000 0000 0000 0000 0000 0000 0000 0000 01 00 0000
             return true;
         } else {
             return false;
@@ -557,7 +558,7 @@ public class ViewCompiler implements ExprCompiler.Listener {
                     for (Byte b : code) {
                         mMemByte.writeByte(b);
                     }
-
+                    // +typeName长度10，+2 +typexml文件流长度94 +2
                     mCodeTotalSize += nameSize + 2 + size + 2;
                     ++mCodeTotalCount;
                     mCodeWrite.init();
