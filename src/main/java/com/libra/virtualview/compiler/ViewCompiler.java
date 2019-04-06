@@ -186,36 +186,36 @@ public class ViewCompiler implements ExprCompiler.Listener {
         mMemByte = new RandomAccessMemByte();
         if (null != mMemByte) {
             // tag
-            mMemByte.write(Common.TAG.getBytes());
+            mMemByte.write(Common.TAG.getBytes());              // 5    5
 
             // version
-            mMemByte.writeShort(Common.MAJOR_VERSION);
-            mMemByte.writeShort(Common.MINOR_VERSION);
-            mMemByte.writeShort(patchVersion);
+            mMemByte.writeShort(Common.MAJOR_VERSION);          // 2    7
+            mMemByte.writeShort(Common.MINOR_VERSION);          // 2    9
+            mMemByte.writeShort(patchVersion);                  // 2    11
             // 11
 
             // code start
-            mMemByte.writeInt(0);
+            mMemByte.writeInt(0);                               // 4    15
             // code len
-            mMemByte.writeInt(0);
+            mMemByte.writeInt(0);                               // 4    19
 
             // string start
-            mMemByte.writeInt(0);
+            mMemByte.writeInt(0);                               // 4    23
             // string len
-            mMemByte.writeInt(0);
+            mMemByte.writeInt(0);                               // 4    27
 
             // expr code start
-            mMemByte.writeInt(0);
+            mMemByte.writeInt(0);                               // 4    31
             // expr code len
-            mMemByte.writeInt(0);
+            mMemByte.writeInt(0);                               // 4    35
 
             // extra data start
-            mMemByte.writeInt(0);
+            mMemByte.writeInt(0);                               // 4    39
             // extra data len
-            mMemByte.writeInt(0);
+            mMemByte.writeInt(0);                               // 4    43
 
             // pageId
-            mMemByte.writeShort(pageId);
+            mMemByte.writeShort(pageId);                            // 2    45
 
             // dep pages
             if (null != depPageIds) {
@@ -224,13 +224,13 @@ public class ViewCompiler implements ExprCompiler.Listener {
                     mMemByte.writeShort(depPageIds[i]);
                 }
             } else {
-                mMemByte.writeShort(0);
+                mMemByte.writeShort(0);                         // 2    47
             }
 
             mCodeStartOffset = (int) mMemByte.length();
             // mCodeStartOffset = 47
             // uiCodeTab item count
-            mMemByte.writeInt(0);
+            mMemByte.writeInt(0);                               // 4    51
             // 到此为止，一共写了 51 个 byte，分别是 ALIVV 01 00 01 0000 0000 0000 0000 0000 0000 0000 0000 01 00 0000
             return true;
         } else {
